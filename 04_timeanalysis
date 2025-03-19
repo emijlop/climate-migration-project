@@ -1,0 +1,117 @@
+import datetime
+from gdeltdoc import Filters, GdeltDoc
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Initialize GDELT client
+gd = GdeltDoc()
+
+# Define specific compound queries targeting climate migration
+compound_queries = [
+    '"drought AND migration"', 
+    '"drought AND displacement"',
+    '"climate change AND migration"',
+    '"water scarcity AND displacement"',
+    '"pastoralist AND movement"',
+    '"climate AND refugees"'
+]
+
+# Time range - using multiple years to identify seasonal patterns
+start_date = "2020-01-01"  # several years? --> works?
+end_date = "2024-03-01"
+
+# Store results
+timeline_data = []
+
+# Process each query
+for query in compound_queries:
+    # Define search filters
+    f = Filters(
+        start_date=start_date,
+        end_date=end_date,
+        keyword=query,
+        country="SO"  # Somalia
+    )
+    
+    try:
+        # Get both volume and tone data
+        volume_results = gd.timeline_search("timeline", f)
+        tone_results = gd.timeline_search("timelinetone", f)
+        
+        if not volume_results.empty:
+            print(f"Found timeline data for {query}")
+            
+            # Merge volume and tone data if both exist
+            if not tone_results.empty:
+                # Ensure datetime is in the same format for joining
+                volume_results['date'] = pd.to_datetime(volume_results['datetime'])
+                tone_results['date'] = pd.to_datetime(tone_results['datetime'])
+                
+                # Merge on date
+                merged_data = pd.merge(volume_results, tone_results, on='date', suffixes=('_vol', '_tone'))
+                
+                # Extract key metrics
+                for index, row in merged_data.iterrows():
+                    timeline_data.append({
+                        "query": query,
+                        "date": row['date'],
+                        "volume": row['Volume'],
+                        "avg_tone": row['Average Tone'],
+                    })
+            else:
+                # Just use volume data
+                for index, row in volume_results.iterrows():
+                    timeline_data.append({
+                        "query": query,
+                        "date": pd.to_datetime(row['datetime']),
+                        "volume": row['Volume'],
+                        "avg_tone": None
+                    })
+        else:
+            print(f"No timeline data found for {query}")
+    except Exception as e:
+        print(f"Error processing query '{query}': {str(e)}")
+        continue
+
+# Convert to DataFrame
+df_timeline = pd.DataFrame(timeline_data)
+
+# Save timeline data
+df_timeline.to_csv("data/somalia_climate_migration_timeline.csv", index=False)
+
+# Basic visualization of results
+if not df_timeline.empty:
+    # Plot volume trends
+    plt.figure(figsize=(12, 8))
+    
+    # Convert to monthly data for better visualization
+    df_timeline['month'] = df_timeline['date'].dt.to_period('M')
+    monthly_data = df_timeline.groupby(['month', 'query'])['volume'].sum().unstack()
+    
+    # Plot
+    monthly_data.plot(kind='line', ax=plt.gca())
+    plt.title('Monthly Volume of Climate Migration News in Somalia')
+    plt.xlabel('Month')
+    plt.ylabel('Volume')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig('data/somalia_climate_migration_volume.png')
+    
+    # Plot tone trends if available
+    if df_timeline['avg_tone'].notna().any():
+        plt.figure(figsize=(12, 8))
+        
+        # Convert to monthly data
+        monthly_tone = df_timeline.groupby(['month', 'query'])['avg_tone'].mean().unstack()
+        
+        # Plot
+        monthly_tone.plot(kind='line', ax=plt.gca())
+        plt.title('Monthly Average Tone of Climate Migration News in Somalia')
+        plt.xlabel('Month')
+        plt.ylabel('Average Tone')
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.savefig('data/somalia_climate_migration_tone.png')
+
+print("Analysis complete.")
