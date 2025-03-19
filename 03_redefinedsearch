@@ -1,0 +1,75 @@
+import datetime
+from gdeltdoc import Filters, GdeltDoc
+import pandas as pd
+
+# Initialize GDELT client
+gd = GdeltDoc()
+
+# Define climate and migration related terms specifically for Somalia
+climate_terms = ["drought", "flooding", "extreme weather", "climate change", 
+                "water scarcity", "desertification", "crop failure"]
+
+migration_terms = ["migration", "displacement", "refugees", "forced movement", 
+                  "population movement", "relocation", "exodus", "resettlement"]
+
+# Create compound search terms that combine climate and migration
+search_queries = []
+for climate_term in climate_terms:
+    for migration_term in migration_terms:
+        search_queries.append(f'"{climate_term}" AND "{migration_term}"')
+
+# Time range - consider using a longer timespan to capture patterns
+start_date = "2023-01-01"  # this is 1 year time period --> check if that works
+end_date = "2024-03-01"
+
+# Store results
+all_results = []
+
+# Process each compound query
+for query in search_queries:
+    # Define search filters with Somalia as the country focus
+    f = Filters(
+        start_date=start_date,
+        end_date=end_date,
+        num_records=100,
+        keyword=query,
+        country="SO"  # Somalia
+    )
+    
+    # Execute the search
+    try:
+        results = gd.article_search(f)
+        
+        if not results.empty:
+            print(f"Found articles for Somalia - {query}")
+            
+            # Extract relevant details
+            for index, row in results.iterrows():
+                all_results.append({
+                    "Query": query,
+                    "Title": row["title"],
+                    "URL": row["url"],
+                    "Source Country": row["sourcecountry"],
+                    "Date": row.get("seendate", "N/A"),
+                    # Add more fields if available in the results
+                    "Domain": row.get("domain", "N/A"),
+                    "Language": row.get("language", "N/A")
+                })
+        else:
+            print(f"No articles found for Somalia - {query}")
+    except Exception as e:
+        print(f"Error processing query '{query}': {str(e)}")
+        continue
+
+# Convert to DataFrame
+df_results = pd.DataFrame(all_results)
+
+# Post-processing to remove duplicate articles (same URL)
+df_results = df_results.drop_duplicates(subset=["URL"])
+
+# Save results
+df_results.to_csv("data/somalia_climate_migration_news.csv", index=False)
+
+# Display summary
+print(f"Total unique articles found: {len(df_results)}")
+print(df_results.head())
