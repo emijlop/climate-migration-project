@@ -25,6 +25,17 @@ The goal is to predict **migration outflows** from regions in Somalia, by:
 
 ## Feature Set
 
+### Key Event Categories (from GDELT & news sources)
+The dataset tracks specific types of climate- and conflict-related crises, including:
+
+- `drought`: Mentions of water shortages or extended dry spells
+- `conflict_over_water`: Resource-based disputes over water
+- `pastoralist_crisis`: Livelihood stress or displacement among herders
+- `famine`: Explicit mentions of food insecurity or starvation
+- `cyclone`: Sudden-onset storm events or surges
+- `crop_decline`: Mentions of yield losses, pest outbreaks, or failed harvests
+
+
 | Feature                          | Description |
 |----------------------------------|-------------|
 | `region_id`, `region_name`       | Standardized administrative region or district |
@@ -40,6 +51,44 @@ The goal is to predict **migration outflows** from regions in Somalia, by:
 | `urban_rural`                    | Urban/Rural label |
 | `infrastructure_score`           | Infrastructure access score |
 | `region_type`                    | General location tag (North, South, etc.) |
+
+---
+
+## Source Datasets
+
+### 1. **Mobility & Displacement (IOM/DTM)**
+| File | Description |
+|------|-------------|
+| `iom_dtm_somalia_baseline2_round1_31012022_hdx.xlsx` | Baseline regional displacement |
+| `mobility-tracking-b2-public-use.csv` | Historical flows data |
+| `dtm_som_baseline_assessment_r2_sws_jl_hs_2023_0-1.csv` | Household-level vulnerability |
+| `somalia-baseline-assessment-dataset_-round-3-february-september-2024_hdx.csv` | Neighbourhood-level data |
+| `somalia_mobility_iom_2024.xlsx` | Newest inflow/outflow figures |
+| `somalia_mobility_iom_2025.xlsx` | Latest projections for 2025 |
+
+### 2. **GDELT Climate & Conflict News**
+| File | Description |
+|------|-------------|
+| `gdelt_somalia_events.csv` | Monthly GDELT articles with location, tone, keywords |
+| `gdelt_keywords_dict.json` | Dictionary of keywords for climate/conflict categories |
+
+### 3. **Demographics / Socio-Economic (World Bank, IOM)**
+| File | Description |
+|------|-------------|
+| `worldbank_population_by_district.csv` | Population estimates |
+| `iom_socioeconomic_indicators.csv` | Education, literacy, poverty rates |
+| `worldbank_access_to_services.csv` | Health, water, electricity access |
+
+### 4. **Governance & Infrastructure**
+| File | Description |
+|------|-------------|
+| `vdem_local_governance.csv` | Local governance indicators |
+| `infrastructure_score_by_region.csv` | Road, market, and electricity coverage |
+
+### 5. **Weather Data**
+| File | Description |
+|------|-------------|
+| `chirps_monthly_rainfall.csv` | Monthly rainfall data (validation) |
 
 ---
 
