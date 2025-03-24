@@ -28,7 +28,7 @@ The goal is to predict **migration outflows** from regions in Somalia, by:
 ### Key Event Categories (from GDELT & news sources)
 The dataset tracks specific types of climate- and conflict-related crises, including:
 
-- `drought`: Mentions of water shortages or extended dry spells --> Laia
+- `drought`: Mentions of water shortages or extended dry spells 
 - `conflict_over_water`: Resource-based disputes over water 
 - `pastoralist_crisis`: Livelihood stress or displacement among herders
 - `famine`: Explicit mentions of food insecurity or starvation
