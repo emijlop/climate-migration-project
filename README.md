@@ -29,12 +29,12 @@ The goal is to predict **migration outflows** from regions in Somalia, by:
 The dataset tracks specific types of climate- and conflict-related crises, including:
 
 - `drought`: Mentions of water shortages or extended dry spells --> Laia
-
 - `conflict_over_water`: Resource-based disputes over water 
 - `pastoralist_crisis`: Livelihood stress or displacement among herders
 - `famine`: Explicit mentions of food insecurity or starvation
 - `cyclone`: Sudden-onset storm events or surges
 - `crop_decline`: Mentions of yield losses, pest outbreaks, or failed harvests
+- `extreme temperatures`: Mentioned in world bank information. 
 
 
 | Feature                          | Description |
