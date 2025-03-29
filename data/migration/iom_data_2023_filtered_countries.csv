@@ -1,0 +1,6 @@
+id,operation,admin0Name,admin0Pcode,admin1Name,admin1Pcode,admin2Name,admin2Pcode,adminLevel,numPresentIdpInd,reportingDate,yearReportingDate,monthReportingDate,roundNumber,assessmentType,operationStatus
+259939,Mobility Monitoring in Kenya,Kenya,KEN,,,,,0,41874,2023-01-31,2023,1,1,BA,Active
+2121163,Mobility Monitoring in Kenya,Kenya,KEN,Samburu,KEN25,,,1,41874,2023-01-31,2023,1,1,BA,Active
+14056170,Mobility Monitoring in Kenya,Kenya,KEN,Samburu,KEN25,Samburu East,KEN25135,2,19468,2023-01-31,2023,1,1,BA,Active
+14056171,Mobility Monitoring in Kenya,Kenya,KEN,Samburu,KEN25,Samburu North,KEN25134,2,8226,2023-01-31,2023,1,1,BA,Active
+14056172,Mobility Monitoring in Kenya,Kenya,KEN,Samburu,KEN25,Samburu West,KEN25133,2,14180,2023-01-31,2023,1,1,BA,Active
