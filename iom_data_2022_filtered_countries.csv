@@ -1,0 +1,28 @@
+id,operation,admin0Name,admin0Pcode,admin1Name,admin1Pcode,admin2Name,admin2Pcode,adminLevel,numPresentIdpInd,reportingDate,yearReportingDate,monthReportingDate,roundNumber,assessmentType,operationStatus
+259936,Mobility Monitoring in Kenya,Kenya,KEN,,,,,0,146927,2022-09-30,2022,9,1,BA,Active
+259937,Mobility Monitoring in Kenya,Kenya,KEN,,,,,0,97307,2022-11-30,2022,11,1,BA,Active
+259938,Mobility Monitoring in Kenya,Kenya,KEN,,,,,0,47670,2022-12-31,2022,12,1,BA,Active
+2121160,Mobility Monitoring in Kenya,Kenya,KEN,Garissa,KEN07,,,1,146927,2022-09-30,2022,9,1,BA,Active
+2121164,Mobility Monitoring in Kenya,Kenya,KEN,Turkana,KEN23,,,1,85355,2022-11-30,2022,11,1,BA,Active
+2121165,Mobility Monitoring in Kenya,Kenya,KEN,West Pokot,KEN24,,,1,11952,2022-11-30,2022,11,1,BA,Active
+2121161,Mobility Monitoring in Kenya,Kenya,KEN,Isiolo,KEN11,,,1,20864,2022-12-31,2022,12,1,BA,Active
+2121162,Mobility Monitoring in Kenya,Kenya,KEN,Marsabit,KEN10,,,1,26806,2022-12-31,2022,12,1,BA,Active
+14056158,Mobility Monitoring in Kenya,Kenya,KEN,Garissa,KEN07,Balambala,KEN07028,2,57707,2022-09-30,2022,9,1,BA,Active
+14056159,Mobility Monitoring in Kenya,Kenya,KEN,Garissa,KEN07,Dadaab,KEN07030,2,18941,2022-09-30,2022,9,1,BA,Active
+14056160,Mobility Monitoring in Kenya,Kenya,KEN,Garissa,KEN07,Fafi,KEN07031,2,19996,2022-09-30,2022,9,1,BA,Active
+14056161,Mobility Monitoring in Kenya,Kenya,KEN,Garissa,KEN07,Garissa Township,KEN07027,2,18417,2022-09-30,2022,9,1,BA,Active
+14056162,Mobility Monitoring in Kenya,Kenya,KEN,Garissa,KEN07,Ijara,KEN07032,2,29667,2022-09-30,2022,9,1,BA,Active
+14056163,Mobility Monitoring in Kenya,Kenya,KEN,Garissa,KEN07,Lagdera,KEN07029,2,2199,2022-09-30,2022,9,1,BA,Active
+14056176,Mobility Monitoring in Kenya,Kenya,KEN,Turkana,KEN23,Turkana North,KEN23123,2,25574,2022-11-30,2022,11,1,BA,Active
+14056177,Mobility Monitoring in Kenya,Kenya,KEN,Turkana,KEN23,Turkana South,KEN23127,2,10575,2022-11-30,2022,11,1,BA,Active
+14056178,Mobility Monitoring in Kenya,Kenya,KEN,Turkana,KEN23,Turkana West,KEN23124,2,16737,2022-11-30,2022,11,1,BA,Active
+14056179,Mobility Monitoring in Kenya,Kenya,KEN,West Pokot,KEN24,Kapenguria,KEN24129,2,11952,2022-11-30,2022,11,1,BA,Active
+14056173,Mobility Monitoring in Kenya,Kenya,KEN,Turkana,KEN23,Loima,KEN23126,2,15735,2022-11-30,2022,11,1,BA,Active
+14056174,Mobility Monitoring in Kenya,Kenya,KEN,Turkana,KEN23,Turkana Central,KEN23125,2,6000,2022-11-30,2022,11,1,BA,Active
+14056175,Mobility Monitoring in Kenya,Kenya,KEN,Turkana,KEN23,Turkana East,KEN23128,2,10734,2022-11-30,2022,11,1,BA,Active
+14056164,Mobility Monitoring in Kenya,Kenya,KEN,Isiolo,KEN11,Isiolo North,KEN11049,2,16847,2022-12-31,2022,12,1,BA,Active
+14056165,Mobility Monitoring in Kenya,Kenya,KEN,Isiolo,KEN11,Isiolo South,KEN11050,2,4017,2022-12-31,2022,12,1,BA,Active
+14056166,Mobility Monitoring in Kenya,Kenya,KEN,Marsabit,KEN10,Laisamis,KEN10048,2,2143,2022-12-31,2022,12,1,BA,Active
+14056167,Mobility Monitoring in Kenya,Kenya,KEN,Marsabit,KEN10,Moyale,KEN10045,2,8726,2022-12-31,2022,12,1,BA,Active
+14056168,Mobility Monitoring in Kenya,Kenya,KEN,Marsabit,KEN10,North Horr,KEN10046,2,2688,2022-12-31,2022,12,1,BA,Active
+14056169,Mobility Monitoring in Kenya,Kenya,KEN,Marsabit,KEN10,Saku,KEN10047,2,13249,2022-12-31,2022,12,1,BA,Active
