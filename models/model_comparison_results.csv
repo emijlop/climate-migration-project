@@ -1,0 +1,5 @@
+Model,MAE (log scale),R² (log scale),MAE (original scale),R² (original scale)
+OLS,0.77,0.61,2403479.64,-0.47
+Random Forest,0.63,0.65,996743.77,0.63
+Ridge,1.55,-0.27,3.96,-0.27
+Lasso,1.54,-0.25,4.05,-0.25
