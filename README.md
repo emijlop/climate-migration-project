@@ -8,88 +8,40 @@ This project uses machine learning to predict **climate-induced migration outflo
 
 ## Objective
 
-The goal is to predict **migration outflows** from regions in Somalia, by:
-- Aggregating multi-source data (climate, news (from GDELT), displacement, vulnerability)
+The goal is to predict **internally displaced people** from countries where the IOM has collected data, by:
+- Aggregating multi-source data (climate, climate catastrophes, socio-economical vulnerability)
 - Creating a region-month panel dataset
-- Constructing vulnerability indices
-- Comparing the predictive value of news vs. real-world weather
 - Evaluating ML model performance and generalizability
 
 ---
 
 ## Target Variable
 
-- `migration_outflows`: Number of people leaving a region per month (main prediction target)
+- `internally_displaced_persons`: Number of people leaving a country per month (main prediction target)
 
----
-
-## Feature Set
-
-### Key Event Categories (from GDELT & news sources)
-The dataset tracks specific types of climate- and conflict-related crises, including:
-
-- `drought`: Mentions of water shortages or extended dry spells 
-- `conflict_over_water`: Resource-based disputes over water 
-- `pastoralist_crisis`: Livelihood stress or displacement among herders
-- `famine`: Explicit mentions of food insecurity or starvation
-- `cyclone`: Sudden-onset storm events or surges
-- `crop_decline`: Mentions of yield losses, pest outbreaks, or failed harvests
-- `extreme temperatures`: Mentioned in world bank information. 
-
-
-| Feature                          | Description |
-|----------------------------------|-------------|
-| `region_id`, `region_name`       | Standardized administrative region or district |
-| `month`                          | Time period (monthly, e.g. 2023-04) |
-| `gdelt_article_count`            | GDELT article count |
-| `gdelt_tone_avg`                 | Avg sentiment tone score |
-| `gdelt_conflict_mentions`        | Number of articles mentioning conflict keywords |
-| `gdelt_env_mentions`             | Number of articles mentioning environmental keywords |
-| `weather_rainfall_mm`           | Monthly rainfall (optional for validation) |
-| `human_vulnerability_index`      | Composite human security vulnerability index |
-| `environmental_vulnerability_index` | Composite environmental vulnerability index |
-| `population`                     | Regional population |
-| `urban_rural`                    | Urban/Rural label |
-| `infrastructure_score`           | Infrastructure access score |
-| `region_type`                    | General location tag (North, South, etc.) |
-
----
 
 ## Source Datasets
 
 ### 1. **Mobility & Displacement (IOM/DTM)**
 | File | Description |
 |------|-------------|
-| `iom_dtm_somalia_baseline2_round1_31012022_hdx.xlsx` | Baseline regional displacement |
-| `mobility-tracking-b2-public-use.csv` | Historical flows data |
-| `dtm_som_baseline_assessment_r2_sws_jl_hs_2023_0-1.csv` | Household-level vulnerability |
-| `somalia-baseline-assessment-dataset_-round-3-february-september-2024_hdx.csv` | Neighbourhood-level data |
-| `somalia_mobility_iom_2024.xlsx` | Newest inflow/outflow figures |
-| `somalia_mobility_iom_2025.xlsx` | Latest projections for 2025 |
+| `full_iom_dtm_data.csv` | Baseline regional displacement |
 
-### 2. **GDELT Climate & Conflict News**
+### 2. **EMDAT Climate Catastrophes**
 | File | Description |
 |------|-------------|
-| `gdelt_somalia_events.csv` | Monthly GDELT articles with location, tone, keywords |
-| `gdelt_keywords_dict.json` | Dictionary of keywords for climate/conflict categories |
+| `emdat_full.xslx` | Register of climate catastrophes per month, with total number of affected people and kind of catastrophe |
 
 ### 3. **Demographics / Socio-Economic (World Bank, IOM)**
 | File | Description |
 |------|-------------|
-| `worldbank_population_by_district.csv` | Population estimates |
-| `iom_socioeconomic_indicators.csv` | Education, literacy, poverty rates |
-| `worldbank_access_to_services.csv` | Health, water, electricity access |
+| `inflation_all_countries_sorted_cleaned.csv` | Inflation data from IMF |
+| `environment_pop_data_all.csv` | Diverse country indicators from World Bank |
 
-### 4. **Governance & Infrastructure**
+### 4. **Weather Data**
 | File | Description |
 |------|-------------|
-| `vdem_local_governance.csv` | Local governance indicators |
-| `infrastructure_score_by_region.csv` | Road, market, and electricity coverage |
-
-### 5. **Weather Data**
-| File | Description |
-|------|-------------|
-| `chirps_monthly_rainfall.csv` | Monthly rainfall data (validation) |
+| `ERA5_Monthly_Climate_Weather_FULL.csv` | Temperature in kelvin, rainfall and evaporation in meters |
 
 ---
 
@@ -134,44 +86,60 @@ The dataset tracks specific types of climate- and conflict-related crises, inclu
 ## Dataset Granularity
 
 - **Time**: Monthly (e.g., 2022-01, 2022-02, ...)
-- **Location**: Administrative region or district level (we can alternatively make a larger district)
+- **Location**: Country level
 
 ---
 
 ## Folder Structure
 
 ```
-📂 data/
-   ├── raw/                         # All original source files
-   ├── processed/                   # Cleaned/aggregated regional monthly files
-   ├── indices/                     # Constructed indices for vulnerability
-   └── final_panel/                 # Final dataset used for modeling
-
-📂 notebooks/
-   ├── 01_dtm_cleaning.ipynb
-   ├── 02_gdelt_processing.ipynb
-   ├── 03_build_indices.ipynb
-   ├── 04_model_training.ipynb
-   └── 05_evaluation.ipynb
-
-📂 models/
-   └── trained_models/
-
-README.md
-requirements.txt
+📂 CLIMATE-MIGRATION-PROJECT/
+│
+├── 📂 data/
+├── merged_climate_iom_data.csv #final dataset
+│ ├── 📂 climate_catastrophes/ # Disaster data (e.g., EM-DAT)
+│ │ └── emdat_full.xlsx
+│ │
+│ ├── 📂 climate_data/ # Monthly climate and weather data
+│ │ └── ERA5_Monthly_Climate_Weather_FULL.csv
+│ │
+│ ├── 📂 economic/ # Inflation and economic indicators
+│ │ ├── inflation_all_countries_sorted_cleaned.csv
+│ │ └── inflation_full.csv
+│ │
+│ ├── 📂 img/ # Visualization outputs
+│ │ ├── alpha_optimization.png
+│ │ ├── improved_distributions.png
+│ │ └── model_comparison_results.png
+│ │
+│ ├── 📂 migration/ # Migration-related datasets
+│ │ ├── full_iom_dtm_data.csv
+│ │ ├── environment_pop_data_all.csv
+│ │ ├── environment_som.csv
+│ │ ├── Floods_Mastertable_2023.xlsx
+│ │ ├── floods_mastertable_2024.xlsx
+│ │ ├── merged_climate_iom_data.csv
+│ │ ├── X_test.csv
+│ │ └── y_test.csv
+│
+├── 📂 mlfp copy/ # Duplicate/backup of ML-related files (uncategorized)
+│
+├── 📂 models/ # Serialized trained models and results
+│ ├── lasso_model.pkl
+│ ├── ols_model.pkl
+│ ├── rf_model.pkl
+│ ├── ridge_model.pkl
+│ └── model_comparison_results.csv
+│
+├── 📂 old/ # Archive of earlier notebooks
+├── 000_prepro_inflation.ipynb
+├── 001_merge_data.ipynb
+├── 002_exploratory_data.ipynb
+├── 003_crossval_log_transform.ipynb
+└── 004_modeling_for_individual_country.ipynb
+│
+└── README.Rmd # Project overview and structure (this file)
 ```
 
-
----
-
-## Notes
-
-- **Migration outflows** are prioritized to identify climate hotspots.
-- **Regional Vulnerability Index** is built from **multiple separate CSVs**, including:
-  - Demographics (IOM, World Bank)
-  - Infrastructure
-  - Political governance (V-Dem)
-  - Socioeconomic indicators
-- Each of these is cleaned and merged during feature engineering.
 
 ---
