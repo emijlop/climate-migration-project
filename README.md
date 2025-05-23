@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project uses machine learning to predict **climate-induced migration outflows** in Somalia. It integrates data from **GDELT (news coverage), IOM/DTM (displacement tracking), weather sources, and development indicators** to build a region-month level dataset. The aim is to identify regional "hotspots"—areas likely to generate out-migration in response to environmental and human security stressors.
+This project uses machine learning to predict **climate-induced migration outflows** in countries registered by IOM. It integrates data from the **World Bank, IMF,  IOM/DTM (displacement tracking), weather sources, and development indicators** to build a country-month level dataset. The aim is to identify regional "hotspots"—areas likely to generate out-migration in response to environmental and human security stressors.
 
 ---
 
