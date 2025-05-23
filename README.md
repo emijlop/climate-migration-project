@@ -32,7 +32,7 @@ The goal is to predict **internally displaced people** from countries where the 
 |------|-------------|
 | `emdat_full.xslx` | Register of climate catastrophes per month, with total number of affected people and kind of catastrophe |
 
-### 3. **Demographics / Socio-Economic (World Bank, IOM)**
+### 3. **Demographics / Socio-Economic (World Bank, IMF)**
 | File | Description |
 |------|-------------|
 | `inflation_all_countries_sorted_cleaned.csv` | Inflation data from IMF |
